@@ -16,14 +16,21 @@ namespace GymReader
             string schedaPath = GetScheda();
             if (schedaPath != null)
             {
-                List<DataTable> dt = gymReader.ReadScheda(schedaPath);
-                FillForm(dt);
+                List<DataTable> dtList = gymReader.ReadScheda(schedaPath);
+                FillForm(dtList);
             }
         }
 
-        private void FillForm(List<DataTable> dt)
+        private void FillForm(List<DataTable> dtList)
         {
-            throw new NotImplementedException();
+           foreach(DataTable dt in dtList)
+            {
+                TabPage tempTab = new TabPage();
+                tabControl1.TabPages.Add(tempTab);
+                DataGridView gridView = new DataGridView();
+                gridView.DataSource = dt;
+                tempTab.Controls.Add(gridView);
+            }
         }
 
         private string GetScheda()
