@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-
+using System.Linq;
 
 namespace GymReader.Controller
 {
     internal class EntityController
     {
-        internal List<DataTable> DivideDt(DataTable dt)
+        internal List<DataTable> DivideDt(Table dt)
         {
             List<DataTable> tableList = new List<DataTable>();
-            foreach (var dt1 in SplitTable(dt, 11))
+            foreach (var dt1 in SplitTable(dt.dataTable, dt.indexes))
             {
                 DataTable dtx = dt1;
                 tableList.Add(dtx);
@@ -20,7 +20,7 @@ namespace GymReader.Controller
         }
 
 
-        private static List<DataTable> SplitTable(DataTable originalTable, int batchSize)
+        private static List<DataTable> SplitTable(DataTable originalTable, List<int> batchSize)
         {
             List<DataTable> tables = new List<DataTable>();
             int i = 0;
@@ -28,25 +28,29 @@ namespace GymReader.Controller
             DataTable newDt = originalTable.Clone();
             newDt.TableName = "Table_" + j;
             newDt.Clear();
+            int counter = 1;
             foreach (DataRow row in originalTable.Rows)
             {
-                DataRow newRow = newDt.NewRow();
-                newRow.ItemArray = row.ItemArray;
-                newDt.Rows.Add(newRow);
-                i++;
-                if (i == batchSize)
+                if (counter < batchSize.Count)
                 {
-                    tables.Add(newDt);
-                    j++;
-                    newDt = originalTable.Clone();
-                    newDt.TableName = "Table_" + j;
-                    newDt.Clear();
-                    i = 0;
+                    DataRow newRow = newDt.NewRow();
+                    newRow.ItemArray = row.ItemArray;
+                    newDt.Rows.Add(newRow);
+                    i++;
+                    if (i == batchSize[counter] - 1)
+                    {
+                        tables.Add(newDt);
+                        j++;
+                        newDt = originalTable.Clone();
+                        newDt.TableName = "Table_" + j;
+                        newDt.Clear();
+                        counter++;
+
+
+                    }
+
                 }
-
-
-
-            }
+             }
             if (newDt.Rows.Count > 0)
             {
                 tables.Add(newDt);

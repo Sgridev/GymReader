@@ -25,9 +25,12 @@ namespace GymReader
 
         private void FillForm(List<DataTable> dtList)
         {
+            int counter = 0;
            foreach(DataTable dt in dtList)
             {
                 TabPage tempTab = new TabPage();
+                counter++;
+                tempTab.Text = "SCHEDA " + counter;
                 AddTitles(tempTab, dt);
                 int j = 40;
                 for (int i = 0; i < dt.Rows.Count - 1; i++)
@@ -44,25 +47,25 @@ namespace GymReader
                         Label repLabel = new Label
                         {
                             Text = dt.Rows[i][2].ToString(),
-                            Location = new System.Drawing.Point(400, j + 10),
+                            Location = new System.Drawing.Point(300, j + 10),
                             Size = new System.Drawing.Size(35, 15)
                         };
                         Label recLabel = new Label
                         {
                             Text = dt.Rows[i][3].ToString(),
-                            Location = new System.Drawing.Point(300, j + 10),
+                            Location = new System.Drawing.Point(400, j + 10),
                             Size = new System.Drawing.Size(30, 15)
                         };
                         tempTab.Controls.Add(esLabel);
                         tempTab.Controls.Add(repLabel);
                         tempTab.Controls.Add(recLabel);
 
-                        //for (int j = i; j < Convert.ToInt32(dt.Rows[j][1].ToString()); j++)
-                        //{
-                        //    CheckBox cb = new CheckBox();
-                        //    cb.Location = new Point(160, 30 * j + 10);
-                        //    tempTab.Controls.Add(cb);
-                        //}
+                        for (int y = 0; y < Convert.ToInt32(dt.Rows[i][1].ToString()); y++)
+                        {
+                            CheckBox cb = new CheckBox();
+                            cb.Location = new Point(500 + (y * 20), j + 10);
+                            tempTab.Controls.Add(cb);
+                        }
                         j += 20;
                     }
                    

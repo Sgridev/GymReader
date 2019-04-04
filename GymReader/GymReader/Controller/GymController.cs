@@ -19,7 +19,7 @@ namespace GymReader.Controller
         }
         public List<DataTable> ReadScheda(string schedaPath)
         {
-            DataTable dt = xmlController.FromExcelToDt(schedaPath);
+            Table dt = xmlController.FromExcelToDt(schedaPath);
             List<DataTable> dtList = entityController.DivideDt(dt);            
             return dtList;
         }
