@@ -48,12 +48,12 @@ namespace GymReader
                         {
                             Text = dt.Rows[i][2].ToString(),
                             Location = new System.Drawing.Point(300, j + 10),
-                            Size = new System.Drawing.Size(35, 15)
+                            Size = new System.Drawing.Size(50, 15)
                         };
                         Label recLabel = new Label
                         {
                             Text = dt.Rows[i][3].ToString(),
-                            Location = new System.Drawing.Point(400, j + 10),
+                            Location = new System.Drawing.Point(425, j + 10),
                             Size = new System.Drawing.Size(30, 15)
                         };
                         tempTab.Controls.Add(esLabel);
@@ -85,13 +85,13 @@ namespace GymReader
                 };
                 Label repLabel = new Label
                 {
-                    Text = "REP",
-                    Location = new System.Drawing.Point(400, 10),
+                    Text = "RECUPERO",
+                    Location = new System.Drawing.Point(425, 10),
                     Size = new System.Drawing.Size(35, 15)
                 };
                 Label recLabel = new Label
                 {
-                    Text = "RECUPERO",
+                    Text = "REP",
                     Location = new System.Drawing.Point(300, 10),
                     Size = new System.Drawing.Size(30, 15)
                 };

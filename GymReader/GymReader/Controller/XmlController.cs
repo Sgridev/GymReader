@@ -17,15 +17,14 @@ namespace GymReader.Controller
         var ws1 = workbook.Worksheet(1);
             Table tableAndIndex = new Table();
             tableAndIndex.dataTable = ws1.RangeUsed().AsTable().AsNativeDataTable();
-            tableAndIndex.indexes = GetBoldIndex(ws1);
-  
+            tableAndIndex.indexes = GetBoldIndex(ws1); 
             return tableAndIndex; }
 
         private List<int> GetBoldIndex(IXLWorksheet ws1)
         {
             List<int> indexList = new List<int>();
             for (int i = 2; i < ws1.LastRowUsed().RowNumber(); i++) {
-                if (ws1.Cell(i, 1).Style.Font.Bold == true)
+                if (ws1.Cell(i, 1).Style.Font.Bold == true && ws1.Cell(i, 1).Value.ToString() != "")
                     indexList.Add(i - 1);
             }
             indexList.Add(ws1.LastRowUsed().RowNumber());
