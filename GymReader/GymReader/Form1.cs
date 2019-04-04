@@ -84,24 +84,36 @@ namespace GymReader
                 {
                     Text = "ESERCIZIO",
                     Location = new System.Drawing.Point(25, 10),
-                    Size = new System.Drawing.Size(200, 15)
+                    Size = new System.Drawing.Size(200, 15),
+                    Font = new Font(this.Font, FontStyle.Bold)
                 };
                 Label repLabel = new Label
                 {
-                    Text = "RECUPERO",
+                    Text = "REC",
                     Location = new System.Drawing.Point(425, 10),
-                    Size = new System.Drawing.Size(35, 15)
+                    Size = new System.Drawing.Size(60, 15),
+                    Font = new Font(this.Font, FontStyle.Bold)
                 };
                 Label recLabel = new Label
                 {
                     Text = "REP",
                     Location = new System.Drawing.Point(300, 10),
-                    Size = new System.Drawing.Size(30, 15)
-                };
-                tempTab.Controls.Add(esLabel);
+                    Size = new System.Drawing.Size(40, 15),
+                    Font = new Font(this.Font, FontStyle.Bold)
+                 };
+            Label serieLabel = new Label
+            {
+                Text = "SERIE",
+                Location = new System.Drawing.Point(500, 10),
+                Size = new System.Drawing.Size(80, 15),
+                Font = new Font(this.Font, FontStyle.Bold)
+
+             };
+            tempTab.Controls.Add(esLabel);
                 tempTab.Controls.Add(repLabel);
                 tempTab.Controls.Add(recLabel);
-            }
+            tempTab.Controls.Add(serieLabel);
+        }
 
         private string GetScheda()
         {
