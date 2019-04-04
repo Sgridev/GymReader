@@ -28,47 +28,74 @@ namespace GymReader
            foreach(DataTable dt in dtList)
             {
                 TabPage tempTab = new TabPage();
-                tabControl1.TabPages.Add(tempTab);
-                //DataGridView gridView = new DataGridView();
-                //gridView.DataSource = dt;
-                //tempTab.Controls.Add(gridView);
-                Panel panel = new Panel();
-                panel.Location = new System.Drawing.Point(26, 12);
-                panel.Name = "Panel1";
-                panel.Size = new System.Drawing.Size(228, 200);
-                panel.TabIndex = 0;
-                tempTab.Controls.Add(panel);
+                AddTitles(tempTab, dt);
+                int j = 40;
                 for (int i = 0; i < dt.Rows.Count - 1; i++)
                 {
+                   
                     if(dt.Rows[i][1].ToString() != "")
                     {
                         Label esLabel = new Label
                         {
-                            Text = dt.Rows[i][0].ToString()
-                        };
+                            Text = dt.Rows[i][0].ToString(),
+                            Location = new System.Drawing.Point(25, j + 10),
+                            Size = new System.Drawing.Size(200, 15)
+                    };
                         Label repLabel = new Label
                         {
-                            Text = dt.Rows[i][2].ToString()
+                            Text = dt.Rows[i][2].ToString(),
+                            Location = new System.Drawing.Point(400, j + 10),
+                            Size = new System.Drawing.Size(35, 15)
                         };
                         Label recLabel = new Label
                         {
-                            Text = dt.Rows[i][3].ToString()
+                            Text = dt.Rows[i][3].ToString(),
+                            Location = new System.Drawing.Point(300, j + 10),
+                            Size = new System.Drawing.Size(30, 15)
                         };
                         tempTab.Controls.Add(esLabel);
                         tempTab.Controls.Add(repLabel);
                         tempTab.Controls.Add(recLabel);
-                       
-                        for (int j = i; j < Convert.ToInt32(dt.Rows[j][1].ToString()); j++)
-                        {
-                            CheckBox cb = new CheckBox();
-                            cb.Location = new Point(160, 30 * j + 10);
-                            tempTab.Controls.Add(cb);
-                        }
-                    }
 
+                        //for (int j = i; j < Convert.ToInt32(dt.Rows[j][1].ToString()); j++)
+                        //{
+                        //    CheckBox cb = new CheckBox();
+                        //    cb.Location = new Point(160, 30 * j + 10);
+                        //    tempTab.Controls.Add(cb);
+                        //}
+                        j += 20;
+                    }
+                   
                 }
+                tabControl1.TabPages.Add(tempTab);
             }
         }
+
+        private void AddTitles(TabPage tempTab, DataTable dt)
+        {
+  
+                Label esLabel = new Label
+                {
+                    Text = "ESERCIZIO",
+                    Location = new System.Drawing.Point(25, 10),
+                    Size = new System.Drawing.Size(200, 15)
+                };
+                Label repLabel = new Label
+                {
+                    Text = "REP",
+                    Location = new System.Drawing.Point(400, 10),
+                    Size = new System.Drawing.Size(35, 15)
+                };
+                Label recLabel = new Label
+                {
+                    Text = "RECUPERO",
+                    Location = new System.Drawing.Point(300, 10),
+                    Size = new System.Drawing.Size(30, 15)
+                };
+                tempTab.Controls.Add(esLabel);
+                tempTab.Controls.Add(repLabel);
+                tempTab.Controls.Add(recLabel);
+            }
 
         private string GetScheda()
         {
