@@ -62,8 +62,11 @@ namespace GymReader
 
                         for (int y = 0; y < Convert.ToInt32(dt.Rows[i][1].ToString()); y++)
                         {
-                            CheckBox cb = new CheckBox();
-                            cb.Location = new Point(500 + (y * 20), j + 10);
+                            CheckBox cb = new CheckBox
+                            {
+                                Location = new Point(500 + (y * 20), j + 10),
+                                Size = new System.Drawing.Size(15, 15)
+                            };
                             tempTab.Controls.Add(cb);
                         }
                         j += 20;
